@@ -29,15 +29,6 @@ const Search1 = ({ n, setN }) => {
             .catch((err) => console.error(err));
     }, [termoBusca]);
 
-    if (n) {
-        const body = document.querySelector('body');
-        body.style.overflow = 'hidden';
-    }
-    if (!n) {
-        const body = document.querySelector('body');
-        body.style.overflow = 'auto';
-    }
-
     return (
         <main>
             {n && (
