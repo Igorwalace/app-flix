@@ -1,5 +1,4 @@
 import React from 'react';
-import { IoClose } from 'react-icons/io5';
 import { PiStarBold } from 'react-icons/pi';
 import Link from 'next/link';
 
@@ -18,7 +17,7 @@ const Movie = ({ modal, setModal, infoSingle, img }) => {
                                 style={{
                                     backgroundImage: `url(${img}${infoSingle.poster_path})`,
                                 }}
-                                className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] right-0 bottom-0 opacity-20 z-[-10] w-[400px] h-[100%]"
+                                className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] right-0 bottom-0 opacity-30 z-[-10] w-[400px] h-[100%]"
                                 id="container-background-image"
                             ></div>
                         ) : (

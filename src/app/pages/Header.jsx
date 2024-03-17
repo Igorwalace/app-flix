@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { IoSearchSharp, IoNotificationsOutline } from 'react-icons/io5';
 import { MdOutlineExpandMore } from 'react-icons/md';
-import Search from './search1';
+import Search from './search';
 
 const Header = () => {
     const [n, setN] = useState(false);
