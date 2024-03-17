@@ -32,7 +32,7 @@ const Search1 = ({ n, setN }) => {
     return (
         <main>
             {n && (
-                <div className="absolute top-[70px] left-0 right-0 bottom-0 bg-black overflow-y-auto">
+                <div className="absolute top-[70px] left-0 right-0 bottom-0 bg-black">
                     <form className="p-1 my-3">
                         <h1 onClick={() => setN(!n)} className='p-1 rounded-md text-white absolute top-[16px] left-0 ml-[10px]' ><FaArrowLeft size={25} /></h1>
                         <input
