@@ -5,16 +5,6 @@ import Link from 'next/link';
 
 const Movie = ({ modal, setModal, infoSingle, img }) => {
 
-    if (modal) {
-        const body = document.querySelector('body');
-        body.style.overflow = 'hidden';
-    }
-    if (!modal) {
-        const body = document.querySelector('body');
-        body.style.overflow = 'auto';
-    }
-
-
     return (
         <main>
             {modal && (
