@@ -67,10 +67,20 @@ const Home = () => {
     const handleAddlist = (id) => {
 
     }
+    
+    useEffect(()=>{
+        if(modal){
+            document.querySelector('body').style.overflow = 'hidden';
+        }
+        if(!modal){
+            document.querySelector('body').style.overflow = 'auto';
+        }
+    },[modal])
 
     return (
         <main className="text-center mt-[65px] bg-black">
             <Header setModal={setModal} modal={modal} />
+            
             <div className="flex flex-wrap justify-around gap-2 px-[4%] py-[1%]">
                 {info.map((info) => (
                     <div

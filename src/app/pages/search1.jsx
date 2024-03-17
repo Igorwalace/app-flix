@@ -29,18 +29,27 @@ const Search1 = ({ n, setN }) => {
             .catch((err) => console.error(err));
     }, [termoBusca]);
 
+    useEffect(()=>{
+        if(n){
+            document.querySelector('body').style.overflow = 'hidden';
+        }
+        if(!n){
+            document.querySelector('body').style.overflow = 'auto';
+        }
+    },[n])
+
     return (
         <main>
             {n && (
-                <div className="absolute top-[70px] left-0 right-0 bottom-0 bg-black overflow-y-auto">
+                <div className="absolute top-[70px] left-0 right-0 bottom-0 bg-black">
                     <form className="p-1 my-3">
                         <h1 onClick={() => setN(!n)} className='p-1 rounded-md text-white absolute top-[16px] left-0 ml-[10px]' ><FaArrowLeft size={25} /></h1>
                         <input
                             type="search"
-                            className="outline-none bg-red-600 p-2 rounded-lg placeholder:text-[14px] placeholder:text-white text-white"
+                            className="outline-none capitalize bg-red-600 p-2 rounded-lg placeholder:text-[14px] placeholder:text-white text-white"
                             value={termoBusca}
                             onChange={(e) => setTermoBusca(e.target.value)}
-                            placeholder="Digite o título do filme"
+                            placeholder="Digite o título do filme "
                         />
                     </form>
                     <ul>
