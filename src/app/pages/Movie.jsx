@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PiStarBold } from 'react-icons/pi';
 import Link from 'next/link';
+import List from './List';
 
-const Movie = ({ modal, setModal, infoSingle, img }) => {
+const Movie = ({
+    modal,
+    setModal,
+    infoSingle,
+    img,
+    setModalList,
+    modalList,
+    ok,
+}) => {
+    const [list, setList] = useState([]);
+
+    function handleIdList(id, title, poster_path) {
+        const newList = {
+            id: id,
+            title: title,
+            homepage: poster_path,
+        };
+        setList([...list, newList]);
+        setModal(!modal);
+        alert('Adicionado!');
+    }
 
     return (
         <main>
+            <List
+                list={list}
+                setList={setList}
+                setModalList={setModalList}
+                modalList={modalList}
+            />
             {modal && (
                 <div className="fixed top-0 left-0 right-0 bottom-0 bg-[rgb(0,0,0)] flex justify-center items-center z-10">
                     <div
@@ -42,31 +69,58 @@ const Movie = ({ modal, setModal, infoSingle, img }) => {
                             </h1>
                         </div>
                         <div>
-                            {infoSingle.original_language ? <h1 className="text-white  capitalize">
-                                Lingugem oficial: {infoSingle.original_language}
-                            </h1> : <h1 className="text-white  capitalize">
-                                Lingugem oficial: Sem Linguagem Oficial
-                            </h1>
+                            {infoSingle.original_language ? (
+                                <h1 className="text-white  capitalize">
+                                    Lingugem oficial:{' '}
+                                    {infoSingle.original_language}
+                                </h1>
+                            ) : (
+                                <h1 className="text-white  capitalize">
+                                    Lingugem oficial: Sem Linguagem Oficial
+                                </h1>
+                            )}
 
-                            }
-                            
-                            {infoSingle.overview ? <p className="text-base max-w-[400px] bg-[rgb(255,255,255)] text-[14px] text-black rounded-lg my-2 p-2">
-                                Sinopse: {infoSingle.overview}
-                            </p> : <p className="text-base max-w-[400px] bg-[rgb(255,255,255)] text-[14px] text-black rounded-lg my-2 p-2">
-                                Sinopse: Sem Sinopse
-                            </p>}
+                            {infoSingle.overview ? (
+                                <p className="text-base max-w-[400px] bg-[rgb(255,255,255)] text-[14px] text-black rounded-lg my-2 p-2">
+                                    Sinopse: {infoSingle.overview}
+                                </p>
+                            ) : (
+                                <p className="text-base max-w-[400px] bg-[rgb(255,255,255)] text-[14px] text-black rounded-lg my-2 p-2">
+                                    Sinopse: Sem Sinopse
+                                </p>
+                            )}
                             <h1 className="text-white capitalize z-50 underline">
-                                <Link href={`${infoSingle.homepage}`} target='_blank'>
+                                <Link
+                                    href={`${infoSingle.homepage}`}
+                                    target="_blank"
+                                >
                                     Pagina oficial
                                 </Link>
                             </h1>
-                        </div>
-                        <div>
-                            <h1 className="text-white capitalize flex justify-center items-center gap-2">
+                            <h1 className="text-white capitalize mt-1 flex justify-center items-center gap-2">
                                 <PiStarBold size={20} />{' '}
                                 {infoSingle.vote_average}
                             </h1>
-                            <button onClick={() => setModal(!modal)} className="bg-red-600 w-[100%] m-1 p-1 rounded-md">
+                        </div>
+                        <div>
+                            {!ok && (
+                                <button
+                                    onClick={() =>
+                                        handleIdList(
+                                            infoSingle.id,
+                                            infoSingle.original_title,
+                                            infoSingle.poster_path
+                                        )
+                                    }
+                                    className="bg-yellow-500 w-[100%] m-1 p-1 rounded-md"
+                                >
+                                    Adicionar a Lista
+                                </button>
+                            )}
+                            <button
+                                onClick={() => setModal(!modal)}
+                                className="bg-red-600 w-[100%] m-1 p-1 rounded-md"
+                            >
                                 Fechar
                             </button>
                         </div>

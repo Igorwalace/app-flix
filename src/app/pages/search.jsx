@@ -10,6 +10,7 @@ const Search1 = ({ n, setN }) => {
     const [infoSingle, setInfoSingle] = useState([]);
     const [modal, setModal] = useState(false);
     const [page, setPage] = useState(1);
+    const [ok, setOk] = useState(false)
 
     const Authorization = process.env.NEXT_PUBLIC_AUTHORIZATION;
     const Api_Key = process.env.NEXT_API_KEY;
@@ -32,7 +33,7 @@ const Search1 = ({ n, setN }) => {
                 .then((response) => {
                     setInfo(response.results);
                 })
-                .catch((err) => console.error(err));
+                .catch((err) => alert(err));
         } else{
             fetch(
                 `https://api.themoviedb.org/3/trending/all/week?page=${page}`,
@@ -42,7 +43,7 @@ const Search1 = ({ n, setN }) => {
                 .then((response) => {
                     setInfo(response.results);
                 })
-                .catch((err) => console.error(err));
+                .catch((err) => alert(err));
         }
     }, [termoBusca, page]);
 
@@ -60,6 +61,7 @@ const Search1 = ({ n, setN }) => {
     const handleId = (id) => {
         fetchDetails(id)
         setModal(!modal);
+        setOk(true)
     }
     const fetchDetails = async (id) => {
         try {
@@ -69,9 +71,8 @@ const Search1 = ({ n, setN }) => {
             );
             const details = await response.json();
             setInfoSingle(details);
-            console.log(details);
         } catch (err) {
-            console.error(err);
+            alert(err);
         }
     };
     
@@ -88,7 +89,6 @@ const Search1 = ({ n, setN }) => {
     const handleChangePage = () => {
         setPage(page + 1);
     };
-
 
     return (
         <main>
@@ -166,6 +166,8 @@ const Search1 = ({ n, setN }) => {
                 setInfoSingle={setInfoSingle}
                 infoSingle={infoSingle}
                 img={img}
+                setOk={setOk}
+                ok={ok}
             />
         </main>
     );

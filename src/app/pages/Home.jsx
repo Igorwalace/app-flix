@@ -11,6 +11,8 @@ const Home = () => {
     const [img, setImg] = useState('https://image.tmdb.org/t/p/w500');
     const [page, setPage] = useState(1);
     const [modal, setModal] = useState(false);
+    const [modalList, setModalList] = useState(false);
+    const [n, setN] = useState(false);
 
     const Authorization = process.env.NEXT_PUBLIC_AUTHORIZATION;
 
@@ -27,10 +29,10 @@ const Home = () => {
             options
         )
             .then((response) => response.json())
-            .then((response) => {
-                setInfo(response.results), console.log(response);
-            })
-            .catch((err) => console.error(err));
+            .then((response) => 
+                setInfo(response.results)
+            )
+            .catch((err) => alert(err));
     }, [page]);
 
     const handleChangePage = () => {
@@ -59,9 +61,8 @@ const Home = () => {
             );
             const details = await response.json();
             setInfoSingle(details);
-            console.log(details);
         } catch (err) {
-            console.error(err);
+            alert(err);
         }
     };
     useEffect(() => {
@@ -75,8 +76,12 @@ const Home = () => {
 
     return (
         <main className="text-center mt-[65px] bg-black">
-            <Header />
-
+            <Header
+                modalList={modalList}
+                setModalList={setModalList}
+                n={n}
+                setN={setN}
+            />
             <div className="flex flex-wrap justify-around gap-2 px-[4%] py-[1%]">
                 {info.map((info) => (
                     <div
@@ -136,6 +141,10 @@ const Home = () => {
                 setInfoSingle={setInfoSingle}
                 infoSingle={infoSingle}
                 img={img}
+                modalList={modalList}
+                setModalList={setModalList}
+                n={n}
+                setN={setN}
             />
         </main>
     );
