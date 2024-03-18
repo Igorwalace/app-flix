@@ -1,7 +1,7 @@
 'use client'
-import { FaArrowLeft } from 'react-icons/fa';
 import React, { useEffect, useState } from 'react';
 import Movie from './Movie';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const Search1 = ({ n, setN }) => {
     const [termoBusca, setTermoBusca] = useState('');
@@ -9,8 +9,10 @@ const Search1 = ({ n, setN }) => {
     const [img, setImg] = useState('https://image.tmdb.org/t/p/w500');
     const [infoSingle, setInfoSingle] = useState([]);
     const [modal, setModal] = useState(false);
+    const [page, setPage] = useState(1);
 
     const Authorization = process.env.NEXT_PUBLIC_AUTHORIZATION;
+    const Api_Key = process.env.NEXT_API_KEY;
 
     const options = {
         method: 'GET',
@@ -21,16 +23,28 @@ const Search1 = ({ n, setN }) => {
     };
 
     useEffect(() => {
-        fetch(
-            `https://api.themoviedb.org/3/search/movie?api_key=e80fe624c24f9dc91a299d8440f739da&query=${termoBusca}`,
-            options
-        )
-            .then((response) => response.json())
-            .then((response) => {
-                setInfo(response.results);
-            })
-            .catch((err) => console.error(err));
-    }, [termoBusca]);
+        if(termoBusca){
+            fetch(
+                `https://api.themoviedb.org/3/search/movie?${Api_Key}&query=${termoBusca}&page=${page}`,
+                options
+            )
+                .then((response) => response.json())
+                .then((response) => {
+                    setInfo(response.results);
+                })
+                .catch((err) => console.error(err));
+        } else{
+            fetch(
+                `https://api.themoviedb.org/3/trending/all/week?page=${page}`,
+                options
+            )
+                .then((response) => response.json())
+                .then((response) => {
+                    setInfo(response.results);
+                })
+                .catch((err) => console.error(err));
+        }
+    }, [termoBusca, page]);
 
     useEffect(()=>{
         if(n){
@@ -60,6 +74,21 @@ const Search1 = ({ n, setN }) => {
             console.error(err);
         }
     };
+    
+    const handleChangePage1 = () => {
+        if (page === 1) {
+            document.getElementById('button-back').style.color = '#ccc';
+            return;
+        }
+        if (page > 1) {
+            document.getElementById('button-back').style.color = 'black';
+        }
+        setPage(page - 1);
+    };
+    const handleChangePage = () => {
+        setPage(page + 1);
+    };
+
 
     return (
         <main>
@@ -105,7 +134,31 @@ const Search1 = ({ n, setN }) => {
                             ))}
                         </div>
                     </ul>
+                    <div className="flex flex-wrap justify-center gap-2 mr-5 px-[4%]">
+                <button
+                    id="button-back"
+                    onClick={handleChangePage1}
+                    style={{
+                        backgroundColor:
+                            page === 1 ? 'rgb(107, 107, 107)' : 'white',
+                        cursor: page === 1 ? 'auto' : '',
+                    }}
+                    className="text-black bg-white p-1 mb-2 rounded-md"
+                >
+                    <FaArrowLeft />
+                </button>
+                <h1 className="text-black bg-white px-3 py-2 mb-2 rounded-md cursor-none">
+                    {page}
+                </h1>
+                <button
+                    onClick={handleChangePage}
+                    className="text-black bg-white p-1 mb-2 rounded-md"
+                >
+                    <FaArrowRight />
+                </button>
+            </div>
                 </div>
+                
             )}
             <Movie
                 setModal={setModal}

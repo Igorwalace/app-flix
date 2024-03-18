@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { IoSearchSharp, IoNotificationsOutline } from 'react-icons/io5';
 import { MdOutlineExpandMore } from 'react-icons/md';
-import Search from './search';
+import Search from './Search';
 
 const Header = () => {
     const [n, setN] = useState(false);
@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <main>
             <Search n={n} setN={setN} />
-            <header className="flex justify-between items-center bg-black p-3 px-[4%] fixed top-0 left-0 right-0">
+            <header className="flex justify-between items-center bg-black p-3 px-[4%] absolute top-0 left-0 right-0">
                 <nav className="flex justify-center items-center gap-12">
                     <Image src="/logo.png" height={70} width={90} />
                     <ul className="flex text-white gap-5" id="ul-header">
