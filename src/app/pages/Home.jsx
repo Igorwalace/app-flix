@@ -64,23 +64,19 @@ const Home = () => {
             console.error(err);
         }
     };
-    const handleAddlist = (id) => {
-
-    }
-    
-    useEffect(()=>{
-        if(modal){
+    useEffect(() => {
+        if (modal) {
             document.querySelector('body').style.overflow = 'hidden';
         }
-        if(!modal){
+        if (!modal) {
             document.querySelector('body').style.overflow = 'auto';
         }
-    },[modal])
+    }, [modal]);
 
     return (
         <main className="text-center mt-[65px] bg-black">
-            <Header setModal={setModal} modal={modal} />
-            
+            <Header />
+
             <div className="flex flex-wrap justify-around gap-2 px-[4%] py-[1%]">
                 {info.map((info) => (
                     <div
@@ -100,12 +96,6 @@ const Home = () => {
                         ) : (
                             <h1 className="my-2">Sem título</h1>
                         )}
-                        <button
-                            className="py-1 px-4 text-white mb-1 bg-blue-950 rounded-xl w-[100%]"
-                            onClick={() => handleAddlist(info.id)}
-                        >
-                            Adicionar a Minha Lista
-                        </button>
                         <button
                             className="py-1 px-4 text-white bg-yellow-600 rounded-xl w-[100%]"
                             onClick={() => handleId(info.id)}

@@ -35,9 +35,11 @@ const Search1 = ({ n, setN }) => {
     useEffect(()=>{
         if(n){
             document.querySelector('body').style.overflow = 'hidden';
+            document.getElementById('search').style.display = 'none'
         }
         if(!n){
             document.querySelector('body').style.overflow = 'auto';
+            document.getElementById('search').style.display = 'block'
         }
     },[n])
 
@@ -93,12 +95,6 @@ const Search1 = ({ n, setN }) => {
                                     ) : (
                                         <h1 className="my-2">Sem título</h1>
                                     )}
-                                    <button
-                                        className="py-1 px-4 text-white mb-1 bg-blue-950 rounded-xl w-[100%]"
-                                        onClick={() => {}}
-                                    >
-                                        Adicionar a Minha Lista
-                                    </button>
                                     <button
                                         className="py-1 px-4 text-white bg-yellow-600 rounded-xl w-[100%]"
                                         onClick={() => handleId(info.id)}

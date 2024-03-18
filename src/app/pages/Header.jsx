@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { IoSearchSharp, IoNotificationsOutline } from 'react-icons/io5';
 import { MdOutlineExpandMore } from 'react-icons/md';
@@ -7,9 +7,11 @@ import Search from './search';
 
 const Header = () => {
     const [n, setN] = useState(false);
+
     const handleSearch = () => {
         setN(true);
     };
+
     return (
         <main>
             <Search n={n} setN={setN} />
@@ -26,7 +28,9 @@ const Header = () => {
                         <li className="cursor-pointer text-slate-300 hover:text-white">
                             Filmes
                         </li>
-                        <li className="cursor-pointer text-slate-300 hover:text-white">
+                        <li
+                            className="cursor-pointer text-slate-300 hover:text-white"
+                        >
                             Minha lista
                         </li>
                     </ul>
@@ -35,6 +39,7 @@ const Header = () => {
                     <IoSearchSharp
                         onClick={() => handleSearch()}
                         size={30}
+                        id='search'
                         className="text-white cursor-pointer"
                     />
                     <IoNotificationsOutline
@@ -45,6 +50,7 @@ const Header = () => {
                     <MdOutlineExpandMore className="text-white ml-[1px] cursor-pointer" />
                 </nav>
             </header>
+            
         </main>
     );
 };
