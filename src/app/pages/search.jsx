@@ -25,7 +25,7 @@ const Search1 = ({ n, setN }) => {
     useEffect(() => {
         if(termoBusca){
             fetch(
-                `https://api.themoviedb.org/3/search/movie?${Api_Key}&query=${termoBusca}&page=${page}`,
+                `https://api.themoviedb.org/3/search/movie?${Api}&query=${termoBusca}&page=${page}`,
                 options
             )
                 .then((response) => response.json())
