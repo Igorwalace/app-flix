@@ -14,19 +14,6 @@ const List = ({ list, setList, modalList, setModalList }) => {
         }
     }, [modalList]);
 
-    
-    useEffect(() => {
-        const newList = JSON.parse(localStorage.getItem('list'));
-        if (newList) {
-            setList(newList);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('list', JSON.stringify(list))
-    }, [list]);
-
-
     const handleId = (id) => {
         const filter = list.filter((user) => user.id !== id);
         setList(filter);
