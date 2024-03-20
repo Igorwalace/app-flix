@@ -15,7 +15,7 @@ const Movie = ({
     const [list, setList] = useState([]);
     
     useEffect(() => {
-        const listV = JSON.parse(localStorage.getItem('list'));
+        const listV = JSON.parse(localStorage.getItem('list2'));
         if (listV) {
           setList(listV); // Update state with data from localStorage if available
         }
@@ -23,7 +23,7 @@ const Movie = ({
 
   // Save list to localStorage whenever the list state changes
       useEffect(() => {
-        localStorage.setItem('list', JSON.stringify(list));
+        localStorage.setItem('list2', JSON.stringify(list));
      }, [list]);
 
     function handleIdList(id, title, poster_path) {
