@@ -14,6 +14,17 @@ const Movie = ({
 }) => {
     const [list, setList] = useState([]);
     
+    useEffect(() => {
+        const newList = JSON.parse(localStorage.getItem('list'));
+        if (newList) {
+            setList(newList);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('list', JSON.stringify(list))
+    }, [list]);
+
 
     function handleIdList(id, title, poster_path) {
         const newList = {
