@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PiStarBold } from 'react-icons/pi';
 import Link from 'next/link';
 import List from './List';
@@ -13,7 +13,6 @@ const Movie = ({
     ok,
 }) => {
     const [list, setList] = useState([]);
-
     
     useEffect(() => {
         const newList = JSON.parse(localStorage.getItem('list'));
