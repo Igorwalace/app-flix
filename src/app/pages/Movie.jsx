@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PiStarBold } from 'react-icons/pi';
 import Link from 'next/link';
 import List from './List';
+import LocalStorage from './localStorage';
 
 const Movie = ({
     modal,
@@ -13,18 +14,6 @@ const Movie = ({
     ok,
 }) => {
     const [list, setList] = useState([]);
-    
-    useEffect(() => {
-        const newList = JSON.parse(localStorage.getItem('list'));
-        if (newList) {
-            setList(newList);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('list', JSON.stringify(list))
-    }, [list]);
-
 
     function handleIdList(id, title, poster_path) {
         const newList = {
@@ -45,6 +34,9 @@ const Movie = ({
                 setModalList={setModalList}
                 modalList={modalList}
             />
+
+            <LocalStorage list={list} setList={setList} />
+
             {modal && (
                 <div className="fixed top-0 left-0 right-0 bottom-0 bg-[rgb(0,0,0)] flex justify-center items-center z-10">
                     <div
