@@ -38,7 +38,7 @@ const Movie = ({
             <LocalStorage list={list} setList={setList} /> {/* não funciona (não sei!) */}
 
             {modal && (
-                <div className="fixed top-0 left-0 right-0 bottom-0 bg-[rgb(0,0,0)] flex justify-center items-center z-10">
+                <div className="fixed top-0 left-0 right-0 bottom-0 bg-[rgb(0,0,0)] flex justify-center items-center z-10 p-3">
                     <div
                         id="container-info-single"
                         className="max-w-[400px] h-[100%] p-1 flex flex-col items-center justify-between gap-3"
