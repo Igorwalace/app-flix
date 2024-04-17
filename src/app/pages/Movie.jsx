@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { PiStarBold } from 'react-icons/pi';
 import Link from 'next/link';
 import List from './List';
-import LocalStorage from './localStorage';
 
 const Movie = ({
     modal,
@@ -45,8 +44,6 @@ const Movie = ({
                 setModalList={setModalList}
                 modalList={modalList}
             />
-
-            <LocalStorage list={list} setList={setList} /> {/* não funciona (não sei!) */}
 
             {modal && (
                 <div className="fixed top-0 left-0 right-0 bottom-0 bg-[rgb(0,0,0)] flex justify-center items-center z-10 p-3">
