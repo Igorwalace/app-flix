@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
-import LocalStorage from './localStorage';
 
 const List = ({ list, setList, modalList, setModalList }) => {
     const [img, setImg] = useState('https://image.tmdb.org/t/p/w500');
@@ -21,7 +20,6 @@ const List = ({ list, setList, modalList, setModalList }) => {
 
     return (
         <main>
-            <LocalStorage list={list} setList={setList} /> {/* não funciona (não sei!) */}
             {modalList && (
                 <main className="absolute top-[70px] left-0 right-0 bottom-0 bg-black px-[4%] overflow-x-auto">
                     <div className="text-center">
